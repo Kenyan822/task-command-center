@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>local.pm-command-center.sync</string>
+  <string>local.task-command-center.sync</string>
   <key>ProgramArguments</key>
   <array>
     <string>/bin/bash</string>

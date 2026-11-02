@@ -1,4 +1,4 @@
-# pm-command-center
+# task-command-center
 
 案件をいくつもかけ持ちする PM のための「司令塔ディレクトリ」。Claude Code を 1 時間ごとに headless で回し、Slack・Gmail・GitHub・各プロジェクトの Claude Code セッションから「誰に何を約束したか」を集めて台帳にし、**相手の期待値が上がりすぎている件だけ**を自分宛ての Slack DM で知らせる。
 
@@ -61,8 +61,8 @@
 8. 定期実行を登録する（自分の手で）
 
    ```sh
-   sed -e "s#__ROOT__#$PWD#g" launchd/sync.plist.example > ~/Library/LaunchAgents/local.pm-command-center.sync.plist
-   launchctl load ~/Library/LaunchAgents/local.pm-command-center.sync.plist
+   sed -e "s#__ROOT__#$PWD#g" launchd/sync.plist.example > ~/Library/LaunchAgents/local.task-command-center.sync.plist
+   launchctl load ~/Library/LaunchAgents/local.task-command-center.sync.plist
    ```
 
    Orca を使う場合は `launchd/todo-sessions.plist.example` も同じように（`__HOME__` も置き換える）。

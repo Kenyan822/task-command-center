@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>local.pm-command-center.todo-sessions</string>
+  <string>local.task-command-center.todo-sessions</string>
   <key>ProgramArguments</key>
   <array>
     <string>/usr/bin/python3</string>
