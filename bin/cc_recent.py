@@ -14,7 +14,8 @@ PROJECTS_DIR = Path.home() / ".claude" / "projects"
 ROOT = Path(__file__).resolve().parent.parent
 _config = json.loads((ROOT / "config.json").read_text())
 # Claude Code は作業ディレクトリの絶対パスの記号を "-" に置き換えた名前で履歴を保存する
-ROOT_PREFIX = re.sub(r"[^A-Za-z0-9]", "-", str(Path(_config["cc_projects_root"]).expanduser())) + "-"
+ROOT_PREFIX = (re.sub(r"[^A-Za-z0-9]", "-", str(Path(_config["cc_projects_root"]).expanduser())) + "-"
+               if _config.get("cc_projects_root") else None)
 SELF_DIR = re.sub(r"[^A-Za-z0-9]", "-", str(ROOT))
 # bot の実行ごとの作業ディレクトリなど、人が操作していないセッションは除外する
 EXCLUDE_MARKERS = ("-data-runs-",)
@@ -88,7 +89,7 @@ def main():
     datetime.fromisoformat(since.replace("Z", "+00:00")).astimezone(timezone.utc)
 
     out = []
-    for d in sorted(PROJECTS_DIR.iterdir()):
+    for d in sorted(PROJECTS_DIR.iterdir()) if ROOT_PREFIX else []:
         if not d.name.startswith(ROOT_PREFIX) or any(m in d.name for m in EXCLUDE_MARKERS):
             continue
         if d.name == SELF_DIR:

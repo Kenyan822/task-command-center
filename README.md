@@ -1,6 +1,6 @@
 # task-command-center
 
-案件をいくつもかけ持ちする PM のための「司令塔ディレクトリ」。Claude Code を 1 時間ごとに headless で回し、Slack・Gmail・GitHub・各プロジェクトの Claude Code セッションから「誰に何を約束したか」を集めて台帳にし、**相手の期待値が上がりすぎている件だけ**を自分宛ての Slack DM で知らせる。
+仕事をいくつもかけ持ちしている人のための「司令塔ディレクトリ」。PM・エンジニア・営業・バックオフィスなど、Slack で依頼を受けて動く人なら誰でも使える。Claude Code を 1 時間ごとに headless で回し、Slack（と、使っていれば Gmail・GitHub・各プロジェクトの Claude Code セッション）から「誰に何を約束したか」を集めて台帳にし、**相手の期待値が上がりすぎている件だけ**を自分宛ての Slack DM で知らせる。
 
 参考実装として公開しているもので、動作の保証やサポートはしない。自分の環境に合わせて書き換えて使う前提。
 
@@ -17,13 +17,14 @@
 
 ## 必要なもの
 - macOS（定期実行に launchd を使う）
-- [Claude Code](https://claude.com/claude-code)。claude.ai の Slack コネクタと Gmail コネクタをつないでおく
-- `gh`（GitHub CLI。ログイン済み）、Python 3.10 以上（標準ライブラリだけで動く）
+- [Claude Code](https://claude.com/claude-code)。claude.ai の Slack コネクタをつないでおく（Gmail も見るなら Gmail コネクタも）
+- Python 3.10 以上（標準ライブラリだけで動く）
+- `gh`（GitHub CLI。ログイン済み。GitHub を使う場合だけ）
 - Orca（任意。`bin/todo_sessions.py` を使う場合だけ）
 
 ## セットアップ
 1. ホーム直下などに clone する（デスクトップ・書類の下は launchd から起動できない）
-2. `cp config.example.json config.json` で設定を作る
+2. `cp config.example.json config.json` で設定を作る。使わない元（GitHub・Gmail・Claude Code のセッション・日報）は空文字 `""` にすると、同期はそれを飛ばす
 
    | キー | 中身 |
    |---|---|
@@ -31,7 +32,7 @@
    | `github_owner` | issue・PR を見る GitHub の org（またはユーザー） |
    | `gmail_account` | 読むメールアカウント |
    | `nippo_channel_id` | 日報を出すチャンネル（/nippo を使う場合だけ） |
-   | `cc_projects_root` | 各プロジェクトを置いているディレクトリ。この下で動いた Claude Code のセッションを集める |
+   | `cc_projects_root` | 各プロジェクトを置いているディレクトリ。この下で動いた Claude Code のセッションを、進んだ証拠として集める |
 
 3. Slack に ToDo のリストを作る。列の名前は次のとおりにする（`bin/todo_list.py` が名前で読む）
 

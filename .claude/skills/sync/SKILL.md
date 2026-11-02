@@ -33,6 +33,8 @@ description: Slack・GitHub・各プロジェクトの Claude Code セッショ�
    - `deleted`：本人が消した行。`ledger_id` があれば台帳の該当項目に `"in_todo": false, "user_override": "ToDo リストから本人が削除（<日付>）"` を書く。以後、レベルが「高」以上に上がったか新しい動きがない限りリストに足し直さない
 
 ### 1. 集める（`since` 以降の差分だけ）
+`config.json` で空文字にした元（`github_owner`・`gmail_account`・`cc_projects_root`）は集めない。
+
 **Slack**（どれも読み取りのみ。`include_bots` は false のまま）
 1. 自分宛てのメンション：`slack_search_public_and_private`、keywords `["<@<SELF>>"]`、filters `after:<since の前日の日付>`、`sort: timestamp`。次のページがあれば、`since` より古い結果が出るまで続ける
 2. DM とグループ DM：同じツールで filters `is:dm after:<日付>`、`channel_types: im,mpim`
