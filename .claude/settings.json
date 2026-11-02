@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__claude_ai_Slack__slack_send_message|mcp__claude_ai_Slack__slack_send_message_draft|mcp__claude_ai_Slack__slack_update_canvas|mcp__claude_ai_Slack__slack_create_canvas|mcp__claude_ai_Slack__slack_create_list|mcp__claude_ai_Slack__slack_add_list_record|mcp__claude_ai_Slack__slack_update_list_record|mcp__claude_ai_Slack__slack_update_list",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/guard_slack.py"
+          }
+        ]
+      }
+    ]
+  }
+}

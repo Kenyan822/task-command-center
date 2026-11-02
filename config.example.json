@@ -1,0 +1,7 @@
+{
+  "slack_user_id": "U0XXXXXXXXX",
+  "github_owner": "your-org",
+  "gmail_account": "you@example.com",
+  "nippo_channel_id": "C0XXXXXXXXX",
+  "cc_projects_root": "~/dev"
+}
